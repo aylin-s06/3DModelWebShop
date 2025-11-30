@@ -1,0 +1,18 @@
+.printer-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.printer-3d-large {
+    min-height: 600px;
+}
+
+.printer-3d-medium {
+    min-height: 400px;
+}
+
+.printer-3d-small {
+    min-height: 300px;
+}
+

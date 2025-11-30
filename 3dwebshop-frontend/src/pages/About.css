@@ -1,0 +1,397 @@
+/* About Page - Visual Timeline Design */
+
+.about-page {
+    min-height: 100vh;
+    background: #0a0a0a;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Hero Section */
+.about-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+    padding: 100px 24px;
+    text-align: center;
+}
+
+.about-hero-content {
+    max-width: 800px;
+}
+
+.about-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    letter-spacing: -2px;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #ff6b35 0%, #ffa500 50%, #ff6b35 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+}
+
+.about-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: #cccccc;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+/* Timeline Section */
+.timeline-section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.timeline-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.orange-accent {
+    color: #ff6b35;
+}
+
+.timeline-subtitle {
+    text-align: center;
+    color: #aaaaaa;
+    font-size: 1.2rem;
+    margin-bottom: 60px;
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.timeline.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-step {
+    position: relative;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.6s ease;
+}
+
+.timeline-step.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.timeline-step.active .step-icon {
+    transform: scale(1.15);
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.6);
+}
+
+.timeline-step.active .step-info {
+    transform: translateX(10px);
+}
+
+.step-connector {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 100%;
+    z-index: 1;
+}
+
+.connector-line {
+    width: 100%;
+    height: calc(100% + 80px);
+    background: linear-gradient(180deg, #ff6b35 0%, rgba(255, 107, 53, 0.3) 100%);
+    position: relative;
+}
+
+.connector-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: #ff6b35;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.8);
+    z-index: 2;
+}
+
+.timeline-step.active .connector-dot {
+    width: 24px;
+    height: 24px;
+    box-shadow: 0 0 25px rgba(255, 107, 53, 1);
+    animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.step-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: 50px;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.8) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 3;
+}
+
+.timeline-step.active .step-content {
+    border-color: rgba(255, 107, 53, 0.6);
+    box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(10, 10, 10, 0.95) 100%);
+}
+
+.step-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+}
+
+.icon-emoji {
+    font-size: 3rem;
+    z-index: 2;
+    position: relative;
+}
+
+.icon-glow {
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.3;
+    filter: blur(15px);
+    animation: glowPulse 2s ease infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+.step-info {
+    flex: 1;
+    transition: transform 0.3s ease;
+}
+
+.step-number {
+    font-size: 0.85rem;
+    color: #ff6b35;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.step-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+    letter-spacing: -0.5px;
+}
+
+.step-description {
+    color: #cccccc;
+    line-height: 1.8;
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Mission Section */
+.mission-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.mission-card {
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.8) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.mission-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 107, 53, 0.5);
+    box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+}
+
+.mission-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.mission-card h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 20px 0;
+}
+
+.mission-card p {
+    color: #cccccc;
+    line-height: 1.8;
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* CTA Section */
+.about-cta {
+    padding: 100px 0;
+    text-align: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+}
+
+.about-cta h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.about-cta p {
+    font-size: 1.2rem;
+    color: #aaaaaa;
+    margin-bottom: 40px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+    background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-hero {
+        min-height: 50vh;
+        padding: 60px 24px;
+    }
+
+    .timeline-section {
+        padding: 60px 0;
+    }
+
+    .step-content {
+        flex-direction: column;
+        text-align: center;
+        margin-left: 30px;
+    }
+
+    .step-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .icon-emoji {
+        font-size: 2.5rem;
+    }
+
+    .step-connector {
+        left: 15px;
+    }
+
+    .mission-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mission-section,
+    .about-cta {
+        padding: 60px 0;
+    }
+}
+
+/* Alternate timeline layout for even steps */
+.timeline-step:nth-child(even) .step-content {
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+    .timeline-step:nth-child(even) .step-content {
+        flex-direction: column;
+    }
+}
+

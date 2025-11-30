@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Създаване на администратор</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #050505;
+            color: #f4f4f4;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+        }
+        h1 {
+            color: #ff6b35;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #c7c7c7;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #f4f4f4;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background: linear-gradient(110deg, #ff6b35 0%, #ffaa4d 100%);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            color: #0a0a0a;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
+        .success {
+            background: rgba(81, 207, 102, 0.1);
+            border: 1px solid rgba(81, 207, 102, 0.3);
+            color: #51cf66;
+        }
+        .error {
+            background: rgba(255, 59, 48, 0.1);
+            border: 1px solid rgba(255, 59, 48, 0.3);
+            color: #ff6b6b;
+        }
+        .info {
+            background: rgba(77, 171, 247, 0.1);
+            border: 1px solid rgba(77, 171, 247, 0.3);
+            color: #4dabf7;
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Създаване на администратор</h1>
+        
+        <div class="info">
+            <strong>Важно:</strong> Този скрипт създава администраторски потребител, но паролата НЕ се хешира автоматично от UserController.<br><br>
+            <strong>Препоръка:</strong> Използвайте регистрацията на `/register` и след това променете ролята в базата данни:<br>
+            <code>UPDATE users SET role = 'ADMIN' WHERE username = 'вашето_име';</code>
+        </div>
+
+        <form id="adminForm">
+            <div class="form-group">
+                <label for="username">Потребителско име *</label>
+                <input type="text" id="username" value="admin" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Имейл *</label>
+                <input type="email" id="email" value="admin@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Парола *</label>
+                <input type="password" id="password" value="admin123" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Име</label>
+                <input type="text" id="name" value="Admin User">
+            </div>
+
+            <button type="submit">Създай администратор</button>
+        </form>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('adminForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const name = document.getElementById('name').value;
+
+            const messageDiv = document.getElementById('message');
+            messageDiv.style.display = 'none';
+
+            try {
+                // Създаване на потребител
+                const response = await fetch('http://localhost:8081/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        email: email,
+                        passwordHash: password, // Backend трябва да хешира това
+                        role: 'ADMIN',
+                        name: name
+                    })
+                });
+
+                if (response.ok) {
+                    const user = await response.json();
+                    messageDiv.className = 'message success';
+                    messageDiv.innerHTML = `
+                        <strong>Успех!</strong><br>
+                        Потребителят е създаден, но паролата може да не работи защото не е хеширана.<br>
+                        Потребителско име: ${user.username}<br>
+                        Роля: ${user.role}<br><br>
+                        <strong>Следващи стъпки:</strong><br>
+                        1. Променете ролята в базата: <code>UPDATE users SET role = 'ADMIN' WHERE username = '${user.username}';</code><br>
+                        2. Или използвайте регистрацията и след това променете ролята.<br><br>
+                        Сега можете да влезете на <a href="http://localhost:3000/login" style="color: #51cf66;">http://localhost:3000/login</a>
+                    `;
+                    messageDiv.style.display = 'block';
+                } else {
+                    const error = await response.text();
+                    messageDiv.className = 'message error';
+                    messageDiv.innerHTML = `<strong>Грешка:</strong> ${error}`;
+                    messageDiv.style.display = 'block';
+                }
+            } catch (error) {
+                messageDiv.className = 'message error';
+                messageDiv.innerHTML = `<strong>Грешка:</strong> ${error.message}<br><br>
+                    Уверете се че:<br>
+                    1. Backend сървърът работи на http://localhost:8081<br>
+                    2. CORS е конфигуриран правилно<br>
+                    3. Базата данни е достъпна`;
+                messageDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,24 @@
+.robot-logo-navbar {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.robot-logo-navbar:hover {
+    transform: scale(1.1);
+}
+
+.robot-logo-navbar canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    filter: drop-shadow(0 0 5px rgba(255, 107, 0, 0.5));
+    transition: filter 0.3s ease;
+}
+
+.robot-logo-navbar:hover canvas {
+    filter: drop-shadow(0 0 10px rgba(255, 107, 0, 0.8));
+}
+

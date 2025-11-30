@@ -1,0 +1,67 @@
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0d0d0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeOut 0.5s ease-out 3s forwards;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.preloader-robot {
+    width: 300px;
+    height: 300px;
+}
+
+.loading-text {
+    font-family: 'Orbitron', 'Exo 2', 'Rajdhani', sans-serif;
+    font-size: 1.5rem;
+    color: #ffffff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 300px;
+    height: 4px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b00 0%, #ff8c42 100%);
+    border-radius: 2px;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+}
+
+.progress-percent {
+    font-family: 'Orbitron', 'Exo 2', 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    color: #ff6b00;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+

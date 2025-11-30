@@ -1,0 +1,201 @@
+.admin-reviews {
+    min-height: calc(100vh - 70px);
+    background: radial-gradient(circle at top, rgba(255, 107, 53, 0.05), transparent 55%),
+        #050505;
+    color: #f4f4f4;
+    padding: 40px 0;
+}
+
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin: 8px 0 4px 0;
+    background: linear-gradient(110deg, #ff6b35 0%, #ffaa4d 55%, #ff6b35 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.page-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.back-link {
+    display: inline-block;
+    color: #c7c7c7;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #ff6b35;
+}
+
+.reviews-table {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.reviews-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reviews-table thead {
+    background: rgba(255, 107, 53, 0.1);
+}
+
+.reviews-table th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #ff6b35;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.reviews-table td {
+    padding: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reviews-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.reviews-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b35 0%, #ffaa4d 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a0a0a;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.product-link {
+    color: #ff6b35;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.product-link:hover {
+    color: #ffaa4d;
+    text-decoration: underline;
+}
+
+.no-product {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+
+.rating-cell {
+    display: flex;
+    gap: 2px;
+}
+
+.rating-cell .star {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.rating-cell .star.filled {
+    color: #ffaa4d;
+}
+
+.comment-cell {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.comment-cell em {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+
+.delete-btn {
+    padding: 8px 16px;
+    background: rgba(255, 107, 53, 0.1);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    border-radius: 6px;
+    color: #ff6b35;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.delete-btn:hover:not(:disabled) {
+    background: rgba(255, 107, 53, 0.2);
+    border-color: #ff6b35;
+}
+
+.delete-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.empty-reviews {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255, 255, 255, 0.08);
+    border-top-color: #ff6b35;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .reviews-table {
+        overflow-x: auto;
+    }
+
+    .reviews-table table {
+        min-width: 800px;
+    }
+}
+

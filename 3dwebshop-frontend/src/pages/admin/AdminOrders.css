@@ -1,0 +1,213 @@
+/* Admin Orders */
+
+.admin-orders {
+    min-height: calc(100vh - 70px);
+    background: radial-gradient(circle at top, rgba(255, 107, 53, 0.05), transparent 55%),
+        #050505;
+    color: #f4f4f4;
+    padding: 40px 0;
+}
+
+.admin-header {
+    margin-bottom: 32px;
+}
+
+.admin-header h1 {
+    font-size: 2.5rem;
+    margin: 8px 0 0 0;
+    background: linear-gradient(110deg, #ff6b35 0%, #ffaa4d 55%, #ff6b35 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.back-link {
+    display: inline-block;
+    color: #c7c7c7;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #ff6b35;
+}
+
+.admin-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 20px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filter-group label {
+    color: #c7c7c7;
+    font-size: 0.9rem;
+}
+
+.filter-group select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 8px 16px;
+    color: #f4f4f4;
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.filter-group select:focus {
+    border-color: #ff6b35;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.orders-count {
+    color: #c7c7c7;
+    font-size: 0.9rem;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.orders-table {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.orders-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.orders-table thead {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.orders-table th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #f4f4f4;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.orders-table td {
+    padding: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.orders-table tbody tr {
+    transition: background 0.3s ease;
+}
+
+.orders-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.order-link {
+    color: #ff6b35;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.order-link:hover {
+    color: #ffaa4d;
+}
+
+.status-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.status-select:focus {
+    border-color: currentColor;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.action-button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.action-button.view {
+    background: rgba(77, 171, 247, 0.1);
+    color: #4dabf7;
+    border: 1px solid rgba(77, 171, 247, 0.3);
+}
+
+.action-button.view:hover {
+    background: rgba(77, 171, 247, 0.2);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: #c7c7c7;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255, 255, 255, 0.08);
+    border-top-color: #ff6b35;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 968px) {
+    .orders-table {
+        overflow-x: auto;
+    }
+
+    .orders-table table {
+        min-width: 800px;
+    }
+
+    .admin-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
